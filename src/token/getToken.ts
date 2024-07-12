@@ -1,9 +1,10 @@
 import { env } from "@/env";
-import { Token } from "./Token";
+import { Token } from "@/token/Token";
+import { encode } from "@/token/encode";
 
 export async function getToken() {
   const { CLIENT_ID, CLIENT_SECRET, TOKEN_URL } = env;
-  const auth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
+  const auth = encode(CLIENT_ID, CLIENT_SECRET);
 
   const response = await fetch(TOKEN_URL, {
     cache: "no-cache",
