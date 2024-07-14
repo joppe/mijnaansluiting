@@ -232,11 +232,13 @@ export async function POST(request: Request) {
   }
 
   const [_, token] = (request.headers.get("Authorization") ?? "").split(" ");
-  console.log(token);
 
   if (!exists(token)) {
     return Response.json({ error: "Invalid token" }, { status: 401 });
   }
 
-  return Response.json({ data: "??" });
+  const body = await request.json();
+  const { opdrachtId } = body;
+
+  return Response.json({ data: `Opdracht met id "${opdrachtId}" ontvangen.` });
 }
