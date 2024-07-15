@@ -33,5 +33,5 @@ export async function POST(request: Request) {
 
   add(token);
 
-  return Response.json({ data: token });
+  return Response.json({ ...token });
 }
